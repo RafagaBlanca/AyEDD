@@ -1,13 +1,11 @@
 #pragma once
 
 #include <stdio.h>
-typedef struct Node
-{
+typedef struct Node {
   char data;
   struct Node *nextNode;
 } Node;
-typedef struct stack
-{
+typedef struct stack {
   Node *top;
   int length;
 } Stack;

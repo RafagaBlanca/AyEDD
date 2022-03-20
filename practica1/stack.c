@@ -1,57 +1,48 @@
 #include "stack.h"
 #include <stdlib.h>
-Node *createNode(char data)
-{
+Node *createNode(char data) {
   Node *node = (Node *)malloc(sizeof(Node));
   node->data = data;
   node->nextNode = NULL;
   return node;
 }
-void destroyNode(Node *Node)
-{
+void destroyNode(Node *Node) {
 
   Node->nextNode = NULL;
   free(Node);
 }
-Stack *createStack()
-{
+Stack *createStack() {
 
   Stack *stack = (Stack *)malloc(sizeof(Stack));
   stack->top = NULL;
   return stack;
 }
-void destroyStack(Stack *stack)
-{
+void destroyStack(Stack *stack) {
 
-  while (stack->top != NULL)
-  {
+  while (stack->top != NULL) {
 
     pop(stack);
   }
   free(stack);
 }
-void push(Stack *stack, char data)
-{
+void push(Stack *stack, char data) {
 
-  Node *Node = CrearNode(data);
+  Node *Node = createNode(data);
   Node->nextNode = stack->top;
   stack->top = Node;
   stack->length++;
 }
-void pop(Stack *stack)
-{
+void pop(Stack *stack) {
 
-  if (stack->top != NULL)
-  {
+  if (stack->top != NULL) {
 
     Node *delete = stack->top;
     stack->top = stack->top->nextNode;
-    DestruirNode(delete);
+    destroyNode(delete);
     stack->length--;
   }
 }
-char top(Stack *stack)
-{
+char top(Stack *stack) {
 
   if (stack->top == NULL)
     return 'F';
