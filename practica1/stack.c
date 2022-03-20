@@ -1,52 +1,61 @@
 #include "stack.h"
 #include <stdlib.h>
-Nodo *CrearNodo(char data) {
-  Nodo *nodo = (Nodo *)malloc(sizeof(Nodo));
-  nodo->data = data;
-  nodo->siguiente = NULL;
-  return nodo;
+Node *createNode(char data)
+{
+  Node *node = (Node *)malloc(sizeof(Node));
+  node->data = data;
+  node->nextNode = NULL;
+  return node;
 }
-void DestruirNodo(Nodo *nodo) {
+void destroyNode(Node *Node)
+{
 
-  nodo->siguiente = NULL;
-  free(nodo);
+  Node->nextNode = NULL;
+  free(Node);
 }
-Stack *crearStack() {
+Stack *createStack()
+{
 
   Stack *stack = (Stack *)malloc(sizeof(Stack));
   stack->top = NULL;
   return stack;
 }
-void destruirStack(Stack *stack) {
+void destroyStack(Stack *stack)
+{
 
-  while (stack->top != NULL) {
+  while (stack->top != NULL)
+  {
 
-    Desapilar(stack);
+    pop(stack);
   }
   free(stack);
 }
-void Apilar(Stack *stack, char data) {
+void push(Stack *stack, char data)
+{
 
-  Nodo *nodo = CrearNodo(data);
-  nodo->siguiente = stack->top;
-  stack->top = nodo;
-  stack->longitud++;
+  Node *Node = CrearNode(data);
+  Node->nextNode = stack->top;
+  stack->top = Node;
+  stack->length++;
 }
-void Desapilar(Stack *stack) {
+void pop(Stack *stack)
+{
 
-  if (stack->top != NULL) {
+  if (stack->top != NULL)
+  {
 
-    Nodo *eliminar = stack->top;
-    stack->top = stack->top->siguiente;
-    DestruirNodo(eliminar);
-    stack->longitud--;
+    Node *delete = stack->top;
+    stack->top = stack->top->nextNode;
+    DestruirNode(delete);
+    stack->length--;
   }
 }
-char Cima(Stack *stack) {
+char top(Stack *stack)
+{
 
   if (stack->top == NULL)
     return 'F';
   else
     return stack->top->data;
 }
-int length(Stack *stack) { return stack->longitud == 0; }
+int lengthOfStack(Stack *stack) { return stack->length == 0; }

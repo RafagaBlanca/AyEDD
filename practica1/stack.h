@@ -1,22 +1,24 @@
 #pragma once
 
 #include <stdio.h>
-typedef struct nodo {
+typedef struct Node
+{
   char data;
-  struct nodo *siguiente;
-} Nodo;
-typedef struct stack {
-  Nodo *top;
-  int longitud;
+  struct Node *nextNode;
+} Node;
+typedef struct stack
+{
+  Node *top;
+  int length;
 } Stack;
 
-Nodo *CrearNodo(char data);
-Stack *crearStack();
-void destruirStack(Stack *stack);
+Node *createNode(char data);
+Stack *createStack();
+void destroyStack(Stack *stack);
 
-void DestruirNodo(Nodo *nodo);
-void Apilar(Stack *stack, char data);
-void Desapilar(Stack *stack);
-char Cima(Stack *stack);
-int length(Stack *stack);
+void destroyNode(Node *Node);
+void push(Stack *stack, char data);
+void pop(Stack *stack);
+char top(Stack *stack);
+int lengthOfStack(Stack *stack);
 int isEmpty(Stack *stack);
