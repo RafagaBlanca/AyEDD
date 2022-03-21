@@ -1,9 +1,26 @@
 #include <stdio.h>
 #include "stack.h"
-FILE *loadFile()
+#include <stdlib.h>
+FILE *loadFile(int opc)
 {
     FILE *file;
-    file = fopen("test.c", "r");
+    if (opc == 1)
+    {
+        file = fopen("1.c", "r");
+    }
+    if (opc == 2)
+    {
+        file = fopen("2.c", "r");
+    }
+    if (opc == 3)
+    {
+        file = fopen("3.c", "r");
+    }
+    if (opc == 4)
+    {
+        file = fopen("4.c", "r");
+    }
+
     if (file == NULL)
     {
         return 0;
@@ -100,10 +117,33 @@ void freeMemory(Stack *stackToFree)
 {
     destroyStack(stackToFree);
 }
+int printMenu()
+{
+    int opc;
+    do
+    {
 
+        system("clear");
+        puts("Seleccione el archivo a analizar\n");
+        puts("1.- 1.c\n");
+        puts("2.- 2.c\n");
+        puts("3.- 3.c\n");
+        puts("4.- 4.c\n");
+        puts("5.- Salir\n");
+        scanf("%d", &opc);
+        if (opc < 5 && opc > 0)
+        {
+            return opc;
+        }
+
+    } while (opc != 5);
+    return opc;
+}
 int main()
 {
-    FILE *file = loadFile();
+
+    int opc = printMenu();
+    FILE *file = loadFile(opc);
     Stack *brackets = bracketStack();
     fillBracketStack(brackets, file);
     freeMemory(brackets);
