@@ -36,7 +36,7 @@ void Error1(Stack *stack)
 {
     if (isEmpty(stack))
     {
-        puts("Stack vacia");
+        puts("No hay error de sintaxis");
         return;
     }
     else
